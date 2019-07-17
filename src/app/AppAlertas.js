@@ -18,7 +18,7 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({alertas: data});
-        console.log(this.state.alertas);
+        // console.log(this.state.alertas);
       });
   }
 
