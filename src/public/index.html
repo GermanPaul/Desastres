@@ -271,7 +271,20 @@
             L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
             .bindPopup('Usted esta aquí. Lo estamos observando.')
             .openPopup();
-            $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es:</p><p style="text-align: left; margin: 5px;">Latitud: '+e.latlng.lat.toFixed(6)+'</p><p style="text-align: left; margin: 5px;">Longitud:'+ e.latlng.lng.toFixed(6))+'</p>';
+            
+
+            const Http = new XMLHttpRequest();
+            const url='http://www.geoplugin.net/extras/location.gp?lat='+e.latlng.lat+'&long='+e.latlng.lng+'&format=json';
+            Http.open("GET", url);
+            Http.send();
+
+            Http.onreadystatechange=function(){ 
+            if(this.readyState==4 && this.status==200){
+                geojson = JSON.parse(Http.responseText)
+                //console.log(geojson.geoplugin_region+' ('+geojson.geoplugin_countryCode+')')
+                $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: '+geojson.geoplugin_region+' ('+geojson.geoplugin_countryCode+')'+'</p><p style="text-align: left; margin: 5px;">Latitud: '+e.latlng.lat.toFixed(6)+'</p><p style="text-align: left; margin: 5px;">Longitud:'+ e.latlng.lng.toFixed(6))+'</p>';
+            }
+        }
         });
     </script>
 </body>
