@@ -1,6 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+var geocoder = require('local-reverse-geocoder');
+
 
 const app = express();
 
@@ -9,6 +11,9 @@ const { mongoose } = require('./database');
 
 // Settings 
 app.set('port', process.env.PORT || 3000);
+geocoder.init({}, function() {
+  // geocoder is loaded and ready to run
+});
 
 // Middlewares
 app.use(morgan('dev'));
@@ -21,6 +26,20 @@ app.get('/reportar',function(req,res) {
 });
 app.get('/alertas',function(req,res) {
   res.sendFile(__dirname + '/public/alertas.html');
+});
+app.get('/geo/:lat/:long',function(req,res) {
+  console.log('Peticion recibida: ');
+  const point = {latitude: req.params.lat, longitude: req.params.long};
+  console.log(point);
+  geocoder.lookUp(point, function(err, res1) {
+    console.log('Buscando...');
+    // console.log(JSON.stringify(res, null, 2));
+    respuesta = JSON.stringify(res1, null, 2);
+    respuesta = JSON.parse(respuesta);
+    console.log(respuesta);
+    res.json(respuesta);
+  });
+  // res.json(point);
 });
 
 // Static Files
