@@ -282,7 +282,7 @@
             if(this.readyState==4 && this.status==200){
                 geojson = JSON.parse(Http.responseText)
                 //console.log(geojson.geoplugin_region+' ('+geojson.geoplugin_countryCode+')')
-                $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: '+geojson.geoplugin_region+' ('+geojson.geoplugin_countryCode+')'+'</p><p style="text-align: left; margin: 5px;">Latitud: '+e.latlng.lat.toFixed(6)+'</p><p style="text-align: left; margin: 5px;">Longitud:'+ e.latlng.lng.toFixed(6))+'</p>';
+                $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: '+geojson.geoplugin_place+', '+geojson.geoplugin_region+' ('+geojson.geoplugin_countryCode+')'+'</p><p style="text-align: left; margin: 5px;">Latitud: '+e.latlng.lat.toFixed(6)+'</p><p style="text-align: left; margin: 5px;">Longitud:'+ e.latlng.lng.toFixed(6))+'</p>';
             }
         }
         });
