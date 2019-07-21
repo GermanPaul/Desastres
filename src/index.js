@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-var geocoder = require('local-reverse-geocoder');
+const geocoder = require('local-reverse-geocoder');
 
 
 const app = express();
@@ -28,15 +28,11 @@ app.get('/alertas',function(req,res) {
   res.sendFile(__dirname + '/public/alertas.html');
 });
 app.get('/geo/:lat/:long',function(req,res) {
-  console.log('Peticion recibida: ');
+  // console.log('Peticion recibida: ');
   const point = {latitude: req.params.lat, longitude: req.params.long};
-  console.log(point);
+  // console.log(point);
   geocoder.lookUp(point, function(err, res1) {
-    console.log('Buscando...');
-    // console.log(JSON.stringify(res, null, 2));
-    respuesta = JSON.stringify(res1, null, 2);
-    respuesta = JSON.parse(respuesta);
-    console.log(respuesta);
+    const respuesta = JSON.parse(JSON.stringify(res1, null, 2));
     res.json(respuesta);
   });
   // res.json(point);
