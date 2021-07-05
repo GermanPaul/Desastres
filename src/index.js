@@ -20,10 +20,10 @@ app.use(express.json());
 
 // Routes
 app.use('/api/alertas', require('./routes/alertas.routes'));
-app.get('/reportar',function(req,res) {
+app.get('/reportar', function (req, res) {
   res.sendFile(__dirname + '/public/reporte.html');
 });
-app.get('/alertas',function(req,res) {
+app.get('/alertas', function (req, res) {
   res.sendFile(__dirname + '/public/alertas.html');
 });
 // app.get('/geo/:lat/:long',function(req,res) {

@@ -151,9 +151,9 @@ window.onload = function onLoad() {
     bar1.text.style.fontSize = '2rem';
     bar2.text.style.fontSize = '2rem';
     bar3.text.style.fontSize = '2rem';
-    rango1 = Math.random()*0.4+0.4;
-    rango2 = Math.random()*0.6; //<--- control de riesgo
-    rango3 = Math.random()*0.4+0.4;
+    rango1 = Math.random() * 0.4 + 0.4;
+    rango2 = Math.random() * 0.6; //<--- control de riesgo
+    rango3 = Math.random() * 0.4 + 0.4;
     bar1.animate(rango1);  // Number from 0.0 to 1.0
     bar2.animate(rango2);  // Number from 0.0 to 1.0
     bar3.animate(rango3);  // Number from 0.0 to 1.0

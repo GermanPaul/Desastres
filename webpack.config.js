@@ -1,9 +1,11 @@
 module.exports = {
-  entry: './src/app/index.js',
+  entry: {
+    alertas: './src/app/alertas/index.js',
+    reportes: './src/app/reportes/index.js'
+  },
   output: {
     path: __dirname + '/src/public/js',
-    filename: 'bundle_alertas.js'
-    // filename: 'bundle_reporte.js'
+    filename: '[name]-bundle.js'
   },
   module: {
     rules: [

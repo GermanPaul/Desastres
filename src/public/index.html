@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>NaturalCode</title>
@@ -9,38 +10,45 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
     <link href="css/gstyle.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
-    
+
     <style>
         * {
             box-sizing: border-box;
         }
+
         body {
             font-family: Helvetica, Verdana, Arial;
             background-color: #2c5aa9;
             margin: 0;
         }
-        .grow {  
+
+        .grow {
             display: flex;
             flex-wrap: wrap;
         }
-        #header{
+
+        #header {
             padding: 15px 30px;
         }
-        #imgLogo{
+
+        #imgLogo {
             width: 300px;
         }
+
         .gside {
             flex: 35%;
             padding: 20px;
         }
-        .gBoton{
+
+        .gBoton {
             flex: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 5px;
         }
-        .gBotonC{
+
+        .gBotonC {
             flex: 100%;
             display: flex;
             justify-content: center;
@@ -52,14 +60,16 @@
             height: 140px;
             border-radius: 10px;
         }
-        .gMapa{
+
+        .gMapa {
             flex: 100%;
             padding: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .gMapaC{
+
+        .gMapaC {
             flex: 100%;
             display: flex;
             justify-content: center;
@@ -69,78 +79,93 @@
             font-size: 20px;
             border-radius: 10px;
         }
+
         .gmain {
             flex: 65%;
             padding: 20px;
         }
+
         .gDetalles {
             flex: 50%;
             padding: 20px;
         }
-        .gAcceso{
+
+        .gAcceso {
             flex: 50%;
             padding: 5px;
         }
-        #footer{
-            background-color:  rgba(0, 0, 0, 0.4);
+
+        #footer {
+            background-color: rgba(0, 0, 0, 0.4);
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .footerC{
+
+        .footerC {
             padding: 30px 0px;
             color: white;
         }
+
         @media screen and (max-width: 700px) {
-            .grow{   
+            .grow {
                 flex-direction: column;
             }
+        }
+
+        .progressbar-text {
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
         }
     </style>
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
     <script src="./js/java.js"></script>
     <script>
         $(function () {
-            $( "#dialog1" ).dialog({
+            $("#dialog1").dialog({
                 autoOpen: false
             });
-            
-            $("#btn-donde").click(function() {
+
+            $("#btn-donde").click(function () {
                 $("#dialog1").dialog('open');
             });
         });
         $(function () {
-            $( "#dialog2" ).dialog({
+            $("#dialog2").dialog({
                 autoOpen: false
             });
-            
-            $("#btn-que").click(function() {
+
+            $("#btn-que").click(function () {
                 $("#dialog2").dialog('open');
             });
         });
         $(function () {
-            $( "#dialog3" ).dialog({
+            $("#dialog3").dialog({
                 autoOpen: false
             });
-            
-            $("#btn-detalles").click(function() {
+
+            $("#btn-detalles").click(function () {
                 $("#dialog3").dialog('open');
             });
         });
         $(function () {
-            $( "#dialog4" ).dialog({
+            $("#dialog4").dialog({
                 autoOpen: false
             });
-            
-            $("#btn-asistencia").click(function() {
+
+            $("#btn-asistencia").click(function () {
                 $("#dialog4").dialog('open');
             });
         });
     </script>
 </head>
+
 <body>
     <div id="header" class="grow">
         <a href="./"><img src="images/logoC.png" alt="" id="imgLogo"></a>
@@ -230,23 +255,29 @@
                     </div>
                 </div>
             </div>
-            <div id="dialog1" title="¿DÓNDE IR?" hidden="hidden">TIP #1: <br><br> Vaya a un sitio seguro designado por el plan de acción de su localidad.</div>
-            <div id="dialog2" title="¿QUÉ HACER?" hidden="hidden">CONSEJOS: <br><br> Revise las alertas de su zona. <br><br> Manténgase informado.</div>
-            <div id="dialog3" title="DETALLES" hidden="hidden">INFÓRMESE: <br><br> Inspeccione los últimos eventos reportados. <br><br> ¡Usted hace la diferencia!</div>
-            <div id="dialog4" title="ASISTENCIA" hidden="hidden">Llame gratis a la Linea Nacional de Emergencias 123</div>
+            <div id="dialog1" title="¿DÓNDE IR?" hidden="hidden">TIP #1: <br><br> Vaya a un sitio seguro designado por
+                el plan de acción de su localidad.</div>
+            <div id="dialog2" title="¿QUÉ HACER?" hidden="hidden">CONSEJOS: <br><br> Revise las alertas de su zona.
+                <br><br> Manténgase informado.</div>
+            <div id="dialog3" title="DETALLES" hidden="hidden">INFÓRMESE: <br><br> Inspeccione los últimos eventos
+                reportados. <br><br> ¡Usted hace la diferencia!</div>
+            <div id="dialog4" title="ASISTENCIA" hidden="hidden">Llame gratis a la Linea Nacional de Emergencias 123
+            </div>
         </div>
     </div>
     <div class="grow">
         <div class="gAcceso">
             <div class="grow">
-                <button onclick="window.location.href='./reportar'" class="btnPanico button" style="vertical-align:middle;">
+                <button onclick="window.location.href='./reportar'" class="btnPanico button"
+                    style="vertical-align:middle;">
                     <span>REPORTAR DESASTRE</span>
                 </button>
             </div>
         </div>
         <div class="gAcceso">
             <div class="grow">
-                <button onclick="window.location.href='./alertas'" class="btnPanico button" style="vertical-align:middle;">
+                <button onclick="window.location.href='./alertas'" class="btnPanico button"
+                    style="vertical-align:middle;">
                     <span>VER ALERTAS REPORTADAS</span>
                 </button>
             </div>
@@ -262,44 +293,45 @@
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
     <script>
         var map = L.map('mapa');
-        map.locate({enableHighAccuracy: true});
-        map.on('locationfound',e=>{
+        map.locate({ enableHighAccuracy: true });
+        map.on('locationfound', e => {
             map.setView([e.latlng.lat, e.latlng.lng], 13);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
             L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
-            .bindPopup('Usted esta aquí. Lo estamos observando.')
-            .openPopup();
-            
+                .bindPopup('Usted esta aquí. Lo estamos observando.')
+                .openPopup();
+
 
             const Http = new XMLHttpRequest();
             // const url='https://www.geoplugin.net/extras/location.gp?lat='+e.latlng.lat+'&long='+e.latlng.lng+'&format=json';
             // const url='/geo/'+e.latlng.lat+'/'+e.latlng.lng;
-            const url=`https://dev.virtualearth.net/REST/v1/Locations/${e.latlng.lat},${e.latlng.lng}?key=AqRkfllJ3jqQ4OfO3e_fKzDh0MR8fxZ5vtwPvAAicEf99uctIqFdJIHk74BcgtJo`;
+            const url = `https://dev.virtualearth.net/REST/v1/Locations/${e.latlng.lat},${e.latlng.lng}?key=AqRkfllJ3jqQ4OfO3e_fKzDh0MR8fxZ5vtwPvAAicEf99uctIqFdJIHk74BcgtJo`;
             Http.open("GET", url);
             Http.send();
-            
-            Http.onreadystatechange=function(){ 
-            if(this.readyState==4 && this.status==200){
-                geojson = JSON.parse(Http.responseText);
-                // console.log(geojson);
-                // if (geojson[0][0].admin2Code==null){
-                //     admin2CodeName="";
-                // }
-                // else{
-                //     admin2CodeName=geojson[0][0].admin2Code.name+",";
-                // }
-                // console.log(geojson);
-                // console.log(geojson.geoplugin_region+' ('+geojson.geoplugin_countryCode+')')
-                // $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: '+admin2CodeName+' '+geojson[0][0].admin1Code.name+' ('+geojson[0][0].countryCode+')'+'</p><p style="text-align: left; margin: 5px;">Latitud: '+e.latlng.lat.toFixed(6)+'</p><p style="text-align: left; margin: 5px;">Longitud:'+ e.latlng.lng.toFixed(6))+'</p>';
-                localidad = geojson.resourceSets[0].resources[0].address.locality;
-                regionAdmin = geojson.resourceSets[0].resources[0].address.adminDistrict;
-                pais = geojson.resourceSets[0].resources[0].address.countryRegion;
-                $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: '+localidad+', '+regionAdmin+' ('+pais+')'+'</p><p style="text-align: left; margin: 5px;">Latitud: '+e.latlng.lat.toFixed(6)+'</p><p style="text-align: left; margin: 5px;">Longitud:'+ e.latlng.lng.toFixed(6))+'</p>';
+
+            Http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    geojson = JSON.parse(Http.responseText);
+                    // console.log(geojson);
+                    // if (geojson[0][0].admin2Code==null){
+                    //     admin2CodeName="";
+                    // }
+                    // else{
+                    //     admin2CodeName=geojson[0][0].admin2Code.name+",";
+                    // }
+                    // console.log(geojson);
+                    // console.log(geojson.geoplugin_region+' ('+geojson.geoplugin_countryCode+')')
+                    // $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: '+admin2CodeName+' '+geojson[0][0].admin1Code.name+' ('+geojson[0][0].countryCode+')'+'</p><p style="text-align: left; margin: 5px;">Latitud: '+e.latlng.lat.toFixed(6)+'</p><p style="text-align: left; margin: 5px;">Longitud:'+ e.latlng.lng.toFixed(6))+'</p>';
+                    localidad = geojson.resourceSets[0].resources[0].address.locality;
+                    regionAdmin = geojson.resourceSets[0].resources[0].address.adminDistrict;
+                    pais = geojson.resourceSets[0].resources[0].address.countryRegion;
+                    $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: ' + localidad + ', ' + regionAdmin + ' (' + pais + ')' + '</p><p style="text-align: left; margin: 5px;">Latitud: ' + e.latlng.lat.toFixed(6) + '</p><p style="text-align: left; margin: 5px;">Longitud:' + e.latlng.lng.toFixed(6)) + '</p>';
+                }
             }
-        }
         });
     </script>
 </body>
+
 </html>
