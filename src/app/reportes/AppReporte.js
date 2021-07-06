@@ -45,10 +45,8 @@ class App extends Component {
           this.setState({_id: '', municipio: '', tipo: '', fecha: '', descripcion: ''});
         });
     } else {
-      // console.log('Se intentó obtener datos...');
       fetch('api/alertas', {
         method: 'POST',
-        // body: JSON.stringify({"municipio":"Faca","fecha":"2019-07-15","tipo":"Terremoto","descripcion":"Se movió la tierra muy fuerte"}),
         body: JSON.stringify(this.state),
         headers: {
           'Accept': 'application/json',
@@ -59,12 +57,10 @@ class App extends Component {
         .then(data => {
           console.log(data);
           alert('Las autoridades han sido informadas de su alerta.');
-          // window.M.toast({html: 'Alerta Saved'});
           this.setState({municipio: '', tipo: '', fecha: '', descripcion: ''});
           window.location.href="./alertas";
         })
         .catch(err => {
-          // console.log('Se trato de enviar el siguiente JSON: '+ JSON.stringify(this.state));
           console.error(err);
         });
     }

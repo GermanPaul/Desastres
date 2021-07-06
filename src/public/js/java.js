@@ -52,4 +52,3 @@ function show_error(error){
             break;
     }
 }
-// $('title').html("Natural Code");

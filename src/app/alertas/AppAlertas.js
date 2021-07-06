@@ -18,7 +18,6 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({alertas: data});
-        // console.log(this.state.alertas);
       });
   }
 
@@ -33,8 +32,6 @@ class App extends Component {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
-          // M.toast({html: 'Task deleted'});
           alert('La alerta ha sido eliminada.');
           this.fetchAlertas();
         });
@@ -63,33 +60,6 @@ class App extends Component {
                     <br/>
                   </div>
                 </div>
-
-                // <div key={aviso._id} style={{backgroundColor: "rgba(0,0,0,0.3)", paddingTop: "15px", margin: "10px auto", width: "98%", height: "auto"}} className="bloque2">
-                //   <p style={{fontSize: "24px"}}>ALERTA #{index+1}</p>
-                //   <br/>
-                //   <div style={{margin:"10px 30px"}}>
-                //     <button onClick={() => this.deleteAlerta(aviso._id)}>Descartar</button>
-                //   </div>
-                //   <br/>
-                //   <p style={{textAlign: "justify", margin: "10px 30px"}}><b>Lugar:</b> {aviso.municipio} </p>
-                //   <p style={{textAlign: "justify", margin: "10px 30px"}}><b>Fecha:</b> {aviso.fecha.slice(0,10)} </p>
-                //   <p style={{textAlign: "justify", margin: "10px 30px"}}><b>Tipo:</b> {aviso.tipo} </p>
-                //   <p style={{textAlign: "justify", margin: "10px 30px"}}><b>Descripción:</b> {aviso.descripcion} </p>
-                //   <br/>
-                // </div>
-
-                // <tr key={task._id}>
-                //   <td>{task.title}</td>
-                //   <td>{task.description}</td>
-                //   <td>
-                //     <button onClick={() => this.deleteTask(task._id)} className="btn light-blue darken-4">
-                //       <i className="material-icons">delete</i> 
-                //     </button>
-                //     <button onClick={() => this.editTask(task._id)} className="btn light-blue darken-4" style={{margin: '4px'}}>
-                //       <i className="material-icons">edit</i>
-                //     </button>
-                //   </td>
-                // </tr>
               )
             })
           }
