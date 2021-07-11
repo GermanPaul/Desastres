@@ -1,0 +1,23 @@
+version: "3.4"
+
+services:
+    web:
+        container_name: disasters-app-web
+        restart: always
+        build:
+            context: .
+            target: debug
+        ports: 
+            - 3000:3000
+            - 9229:9229
+        links: 
+            - mongo
+        volumes: 
+            - .:/usr/src/app
+    mongo:
+        container_name: disasters-app-db
+        image: mongo
+        ports: 
+            - 27017:27017
+        logging: 
+            driver: none
