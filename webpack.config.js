@@ -1,7 +1,7 @@
 module.exports = {
   entry: {
-    alertas: './src/app/alertas/index.js',
-    reportes: './src/app/reportes/index.js'
+    alertas: './src/app/alertas/index',
+    reportes: './src/app/reportes/index'
   },
   output: {
     path: __dirname + '/src/public/js',

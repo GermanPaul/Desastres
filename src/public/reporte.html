@@ -1,166 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Reportar un Desastre</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="images/favicon.png" />
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
-    <link href="css/gstyle.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="css/gstyle.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    />
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: Helvetica, Verdana, Arial;
-            background-color: #2c5aa9;
-            margin: 0;
-        }
+      body {
+        font-family: Helvetica, Verdana, Arial;
+        background-color: #2c5aa9;
+        margin: 0;
+      }
 
+      .grow {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #header {
+        padding: 15px 30px;
+      }
+
+      #imgLogo {
+        width: 300px;
+      }
+
+      .gseccion {
+        flex: 33%;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: white;
+      }
+
+      .gseccionC {
+        flex: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .gAcceso {
+        flex: 50%;
+        padding: 5px;
+      }
+
+      #footer {
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footerC {
+        padding: 30px 0px;
+        color: white;
+      }
+
+      @media screen and (max-width: 700px) {
         .grow {
-            display: flex;
-            flex-wrap: wrap;
+          flex-direction: column;
         }
-
-        #header {
-            padding: 15px 30px;
-        }
-
-        #imgLogo {
-            width: 300px;
-        }
-
-        .gseccion {
-            flex: 33%;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            color: white;
-        }
-
-        .gseccionC {
-            flex: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .gAcceso {
-            flex: 50%;
-            padding: 5px;
-        }
-
-        #footer {
-            background-color: rgba(0, 0, 0, 0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .footerC {
-            padding: 30px 0px;
-            color: white;
-        }
-
-        @media screen and (max-width: 700px) {
-            .grow {
-                flex-direction: column;
-            }
-        }
+      }
     </style>
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="./js/java.js"></script>
-</head>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/location.js"></script>
+  </head>
 
-<body>
+  <body>
     <div id="header" class="grow">
-        <a href="./"><img src="images/logoC.png" alt="" id="imgLogo"></a>
+      <a href="./"><img src="images/logoC.png" alt="" id="imgLogo" /></a>
     </div>
     <div class="grow">
-        <div class="gseccion">
-            <div style="text-align: center" class="gseccionC">
-                <h1>AGREGAR FOTO</h1>
-                <br>
-                <input style="margin:auto;" type="file" id="file" accept="image/*" onchange="mostrar()" />
-                <br>
-                <br>
-                <img width="100%" id="img" />
-            </div>
+      <div class="gseccion">
+        <div style="text-align: center" class="gseccionC">
+          <h1>AGREGAR FOTO</h1>
+          <br />
+          <input
+            style="margin: auto"
+            type="file"
+            id="file"
+            accept="image/*"
+            onchange="mostrar()"
+          />
+          <br />
+          <br />
+          <img width="100%" id="img" />
         </div>
-        <div class="gseccion">
-            <div class="gseccionC">
-                <h1>UBICACIÓN</h1>
-                <br>
-                <div style="width: 100%; height: 300px;" id="mapa"></div>
-            </div>
+      </div>
+      <div class="gseccion">
+        <div class="gseccionC">
+          <h1>UBICACIÓN</h1>
+          <br />
+          <div style="width: 100%; height: 300px" id="mapa"></div>
         </div>
-        <div class="gseccion">
-            <div class="gseccionC">
-                <h1>DETALLES</h1>
-                <br>
-                <div id="app"></div>
-            </div>
+      </div>
+      <div class="gseccion">
+        <div class="gseccionC">
+          <h1>DETALLES</h1>
+          <br />
+          <div id="app"></div>
         </div>
+      </div>
     </div>
     <div class="grow">
-        <div class="gAcceso">
-            <div class="grow">
-                <button onclick="window.location.href='./'" class="btnPanico button" style="vertical-align:middle;">
-                    <span>REGRESAR</span>
-                </button>
-            </div>
+      <div class="gAcceso">
+        <div class="grow">
+          <button
+            onclick="window.location.href='./'"
+            class="btnPanico button"
+            style="vertical-align: middle"
+          >
+            <span>REGRESAR</span>
+          </button>
         </div>
-        <div class="gAcceso">
-            <div class="grow">
-                <button onclick="window.location.href='./alertas'" class="btnPanico button"
-                    style="vertical-align:middle;">
-                    <span>VER ALERTAS REPORTADAS</span>
-                </button>
-            </div>
+      </div>
+      <div class="gAcceso">
+        <div class="grow">
+          <button
+            onclick="window.location.href='./alertas'"
+            class="btnPanico button"
+            style="vertical-align: middle"
+          >
+            <span>VER ALERTAS REPORTADAS</span>
+          </button>
         </div>
+      </div>
     </div>
     <div id="footer" class="grow">
-        <div class="footerC">
-            Thor Team | <a href="http://bictia.com/">BICTIA 2019</a>
-        </div>
+      <div class="footerC">
+        Thor Team | <a href="http://bictia.com/">BICTIA 2019</a>
+      </div>
     </div>
     <script>
-        function mostrar() {
-            var archivo = document.getElementById("file").files[0];
-            var reader = new FileReader();
-            if (file) {
-                reader.readAsDataURL(archivo);
-                reader.onloadend = function () {
-                    document.getElementById("img").src = reader.result;
-                }
-            }
+      function mostrar() {
+        var archivo = document.getElementById('file').files[0]
+        var reader = new FileReader()
+        if (file) {
+          reader.readAsDataURL(archivo)
+          reader.onloadend = function () {
+            document.getElementById('img').src = reader.result
+          }
         }
+      }
     </script>
     <script src="./js/reportes-bundle.js"></script>
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
     <script>
-        var map = L.map('mapa');
-        map.locate({ enableHighAccuracy: true });
-        map.on('locationfound', e => {
-            map.setView([e.latlng.lat, e.latlng.lng], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
-                .bindPopup('Usted esta aquí. Lo estamos observando.')
-                .openPopup();
-        });
+      var map = L.map('mapa')
+      map.locate({ enableHighAccuracy: true })
+      map.on('locationfound', (e) => {
+        map.setView([e.latlng.lat, e.latlng.lng], 13)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map)
+        L.marker([e.latlng.lat, e.latlng.lng])
+          .addTo(map)
+          .bindPopup('Usted esta aquí. Lo estamos observando.')
+          .openPopup()
+      })
     </script>
-</body>
-
+  </body>
 </html>

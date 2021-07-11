@@ -1,8 +1,16 @@
-const mongoose = require('mongoose');
-const URI = process.env.MONGODB_URL || 'mongodb://localhost/desastres';
+const mongoose = require('mongoose')
 
-mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(db => console.log('Conectado exitosamente a la Base de Datos...'))
-  .catch(error => console.error(error));
+const URI = 'mongodb+srv://germanpaul:contra123@cluster0-5omwb.mongodb.net/desastres?retryWrites=true&w=majority'
 
-module.exports = mongoose;
+mongoose
+  .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    /* eslint-disable no-console */
+    console.log('Conectado exitosamente a la Base de Datos...')
+  })
+  .catch((error) => {
+    /* eslint-disable no-console */
+    console.error(error)
+  })
+
+module.exports = mongoose

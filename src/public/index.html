@@ -1,337 +1,370 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>NaturalCode</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="images/favicon.png" />
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
-    <link href="css/gstyle.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="css/gstyle.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    />
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: Helvetica, Verdana, Arial;
-            background-color: #2c5aa9;
-            margin: 0;
-        }
+      body {
+        font-family: Helvetica, Verdana, Arial;
+        background-color: #2c5aa9;
+        margin: 0;
+      }
 
+      .grow {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #header {
+        padding: 15px 30px;
+      }
+
+      #imgLogo {
+        width: 300px;
+      }
+
+      .gside {
+        flex: 35%;
+        padding: 20px;
+      }
+
+      .gBoton {
+        flex: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+      }
+
+      .gBotonC {
+        flex: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        color: rgb(153, 61, 61);
+        font-size: 20px;
+        padding: 20px 0px;
+        height: 140px;
+        border-radius: 10px;
+      }
+
+      .gMapa {
+        flex: 100%;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .gMapaC {
+        flex: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        color: rgb(153, 61, 61);
+        font-size: 20px;
+        border-radius: 10px;
+      }
+
+      .gmain {
+        flex: 65%;
+        padding: 20px;
+      }
+
+      .gDetalles {
+        flex: 50%;
+        padding: 20px;
+      }
+
+      .gAcceso {
+        flex: 50%;
+        padding: 5px;
+      }
+
+      #footer {
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footerC {
+        padding: 30px 0px;
+        color: white;
+      }
+
+      @media screen and (max-width: 700px) {
         .grow {
-            display: flex;
-            flex-wrap: wrap;
+          flex-direction: column;
         }
+      }
 
-        #header {
-            padding: 15px 30px;
-        }
-
-        #imgLogo {
-            width: 300px;
-        }
-
-        .gside {
-            flex: 35%;
-            padding: 20px;
-        }
-
-        .gBoton {
-            flex: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 5px;
-        }
-
-        .gBotonC {
-            flex: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            color: rgb(153, 61, 61);
-            font-size: 20px;
-            padding: 20px 0px;
-            height: 140px;
-            border-radius: 10px;
-        }
-
-        .gMapa {
-            flex: 100%;
-            padding: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .gMapaC {
-            flex: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            color: rgb(153, 61, 61);
-            font-size: 20px;
-            border-radius: 10px;
-        }
-
-        .gmain {
-            flex: 65%;
-            padding: 20px;
-        }
-
-        .gDetalles {
-            flex: 50%;
-            padding: 20px;
-        }
-
-        .gAcceso {
-            flex: 50%;
-            padding: 5px;
-        }
-
-        #footer {
-            background-color: rgba(0, 0, 0, 0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .footerC {
-            padding: 30px 0px;
-            color: white;
-        }
-
-        @media screen and (max-width: 700px) {
-            .grow {
-                flex-direction: column;
-            }
-        }
-
-        .progressbar-text {
-            left: 50% !important;
-            top: 50% !important;
-            transform: translate(-50%, -50%) !important;
-        }
+      .progressbar-text {
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+      }
     </style>
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="./js/java.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/location.js"></script>
     <script>
-        $(function () {
-            $("#dialog1").dialog({
-                autoOpen: false
-            });
+      $(function () {
+        $('#dialog1').dialog({
+          autoOpen: false,
+        })
 
-            $("#btn-donde").click(function () {
-                $("#dialog1").dialog('open');
-            });
-        });
-        $(function () {
-            $("#dialog2").dialog({
-                autoOpen: false
-            });
+        $('#btn-donde').click(function () {
+          $('#dialog1').dialog('open')
+        })
+      })
+      $(function () {
+        $('#dialog2').dialog({
+          autoOpen: false,
+        })
 
-            $("#btn-que").click(function () {
-                $("#dialog2").dialog('open');
-            });
-        });
-        $(function () {
-            $("#dialog3").dialog({
-                autoOpen: false
-            });
+        $('#btn-que').click(function () {
+          $('#dialog2').dialog('open')
+        })
+      })
+      $(function () {
+        $('#dialog3').dialog({
+          autoOpen: false,
+        })
 
-            $("#btn-detalles").click(function () {
-                $("#dialog3").dialog('open');
-            });
-        });
-        $(function () {
-            $("#dialog4").dialog({
-                autoOpen: false
-            });
+        $('#btn-detalles').click(function () {
+          $('#dialog3').dialog('open')
+        })
+      })
+      $(function () {
+        $('#dialog4').dialog({
+          autoOpen: false,
+        })
 
-            $("#btn-asistencia").click(function () {
-                $("#dialog4").dialog('open');
-            });
-        });
+        $('#btn-asistencia').click(function () {
+          $('#dialog4').dialog('open')
+        })
+      })
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="header" class="grow">
-        <a href="./"><img src="images/logoC.png" alt="" id="imgLogo"></a>
+      <a href="./"><img src="images/logoC.png" alt="" id="imgLogo" /></a>
     </div>
     <div class="grow">
-        <div style="color: white" class="gmain">
-            <p>RIESGO DE </p>
-            <h1 id="desastre">DESLIZAMIENTO</h1>
-            <script>
-                var rand = Math.floor(Math.random() * 5);
-                var texto;
-                switch (rand) {
-                    case 1:
-                        texto = "INUNDACIÓN";
-                        break;
-                    case 2:
-                        texto = "DESLIZAMIENTO";
-                        break;
-                    case 3:
-                        texto = "INCENDIO FORESTAL";
-                        break;
-                    case 4:
-                        texto = "TORMENTA";
-                        break;
-                    default:
-                        texto = "DESLIZAMIENTO";
-                }
-                document.getElementById('desastre').innerHTML = texto;
-            </script>
-            <div class="grupo1">
-                <div class="grupo1-A">
-                    <div id="contador1" class="horizontal"></div>
-                    <h4 style="margin-top: 20px">TEMPERATURA</h4>
-                </div>
-                <div class="grupo1-B">
-                    <div id="contador2" class="horizontal"></div>
-                    <h4 style="margin-top: 35px">RANGO DE RIESGO:</h4>
-                    <h2 id="riesgo" class="horizontalINF">MODERADO</h2>
-                </div>
-                <div class="grupo1-A">
-                    <div id="contador3" class="horizontal"></div>
-                    <h4 style="margin-top: 20px">HUMEDAD</h4>
-                </div>
-            </div>
-            <hr style="width: 90%; margin-top: 2%;">
-            <div class="grow">
-                <div class="gDetalles">
-                    <h3 style="margin-bottom: 25px;">DETALLES</h3>
-                    <div id="result"></div>
-                </div>
-                <div class="gDetalles">
-                    <h3 style="margin-bottom: 25px;">RECOMENDACIONES</h3>
-                    <p style="text-align: left; margin: 5px;">Conserve la calma</p>
-                    <p style="text-align: left; margin: 5px;">Mantengase alejado de la zona</p>
-                    <p style="text-align: left; margin: 5px;">Tenga listo un botiquín</p>
-                    <p style="text-align: left; margin: 5px;">Tenga a la mano los números de emergencia</p>
-                </div>
-            </div>
+      <div style="color: white" class="gmain">
+        <p>RIESGO DE</p>
+        <h1 id="desastre">DESLIZAMIENTO</h1>
+        <script>
+          var rand = Math.floor(Math.random() * 5)
+          var texto
+          switch (rand) {
+            case 1:
+              texto = 'INUNDACIÓN'
+              break
+            case 2:
+              texto = 'DESLIZAMIENTO'
+              break
+            case 3:
+              texto = 'INCENDIO FORESTAL'
+              break
+            case 4:
+              texto = 'TORMENTA'
+              break
+            default:
+              texto = 'DESLIZAMIENTO'
+          }
+          document.getElementById('desastre').innerHTML = texto
+        </script>
+        <div class="grupo1">
+          <div class="grupo1-A">
+            <div id="contador1" class="horizontal"></div>
+            <h4 style="margin-top: 20px">TEMPERATURA</h4>
+          </div>
+          <div class="grupo1-B">
+            <div id="contador2" class="horizontal"></div>
+            <h4 style="margin-top: 35px">RANGO DE RIESGO:</h4>
+            <h2 id="riesgo" class="horizontalINF">MODERADO</h2>
+          </div>
+          <div class="grupo1-A">
+            <div id="contador3" class="horizontal"></div>
+            <h4 style="margin-top: 20px">HUMEDAD</h4>
+          </div>
         </div>
-        <div class="gside">
-            <div class="grow">
-                <div class="gBoton">
-                    <button id="btn-detalles" class="gBotonC">
-                        DETALLES
-                    </button>
-                </div>
-                <div class="gBoton">
-                    <button id="btn-donde" class="gBotonC">
-                        ¿DÓNDE IR?
-                    </button>
-                </div>
-                <div class="gBoton">
-                    <button id="btn-que" class="gBotonC">
-                        ¿QUÉ HACER?
-                    </button>
-                </div>
-                <div class="gBoton">
-                    <button id="btn-asistencia" class="gBotonC">
-                        ASISTENCIA
-                    </button>
-                </div>
-            </div>
-            <div class="grow">
-                <div class="gMapa">
-                    <div class="gMapaC">
-                        <div style="width: 100%; height: 300px;" id="mapa"></div>
-                    </div>
-                </div>
-            </div>
-            <div id="dialog1" title="¿DÓNDE IR?" hidden="hidden">TIP #1: <br><br> Vaya a un sitio seguro designado por
-                el plan de acción de su localidad.</div>
-            <div id="dialog2" title="¿QUÉ HACER?" hidden="hidden">CONSEJOS: <br><br> Revise las alertas de su zona.
-                <br><br> Manténgase informado.</div>
-            <div id="dialog3" title="DETALLES" hidden="hidden">INFÓRMESE: <br><br> Inspeccione los últimos eventos
-                reportados. <br><br> ¡Usted hace la diferencia!</div>
-            <div id="dialog4" title="ASISTENCIA" hidden="hidden">Llame gratis a la Linea Nacional de Emergencias 123
-            </div>
+        <hr style="width: 90%; margin-top: 2%" />
+        <div class="grow">
+          <div class="gDetalles">
+            <h3 style="margin-bottom: 25px">DETALLES</h3>
+            <div id="result"></div>
+          </div>
+          <div class="gDetalles">
+            <h3 style="margin-bottom: 25px">RECOMENDACIONES</h3>
+            <p style="text-align: left; margin: 5px">Conserve la calma</p>
+            <p style="text-align: left; margin: 5px">
+              Mantengase alejado de la zona
+            </p>
+            <p style="text-align: left; margin: 5px">Tenga listo un botiquín</p>
+            <p style="text-align: left; margin: 5px">
+              Tenga a la mano los números de emergencia
+            </p>
+          </div>
         </div>
+      </div>
+      <div class="gside">
+        <div class="grow">
+          <div class="gBoton">
+            <button id="btn-detalles" class="gBotonC">DETALLES</button>
+          </div>
+          <div class="gBoton">
+            <button id="btn-donde" class="gBotonC">¿DÓNDE IR?</button>
+          </div>
+          <div class="gBoton">
+            <button id="btn-que" class="gBotonC">¿QUÉ HACER?</button>
+          </div>
+          <div class="gBoton">
+            <button id="btn-asistencia" class="gBotonC">ASISTENCIA</button>
+          </div>
+        </div>
+        <div class="grow">
+          <div class="gMapa">
+            <div class="gMapaC">
+              <div style="width: 100%; height: 300px" id="mapa"></div>
+            </div>
+          </div>
+        </div>
+        <div id="dialog1" title="¿DÓNDE IR?" hidden="hidden">
+          TIP #1: <br /><br />
+          Vaya a un sitio seguro designado por el plan de acción de su
+          localidad.
+        </div>
+        <div id="dialog2" title="¿QUÉ HACER?" hidden="hidden">
+          CONSEJOS: <br /><br />
+          Revise las alertas de su zona. <br /><br />
+          Manténgase informado.
+        </div>
+        <div id="dialog3" title="DETALLES" hidden="hidden">
+          INFÓRMESE: <br /><br />
+          Inspeccione los últimos eventos reportados. <br /><br />
+          ¡Usted hace la diferencia!
+        </div>
+        <div id="dialog4" title="ASISTENCIA" hidden="hidden">
+          Llame gratis a la Linea Nacional de Emergencias 123
+        </div>
+      </div>
     </div>
     <div class="grow">
-        <div class="gAcceso">
-            <div class="grow">
-                <button onclick="window.location.href='./reportar'" class="btnPanico button"
-                    style="vertical-align:middle;">
-                    <span>REPORTAR DESASTRE</span>
-                </button>
-            </div>
+      <div class="gAcceso">
+        <div class="grow">
+          <button
+            onclick="window.location.href='./reportar'"
+            class="btnPanico button"
+            style="vertical-align: middle"
+          >
+            <span>REPORTAR DESASTRE</span>
+          </button>
         </div>
-        <div class="gAcceso">
-            <div class="grow">
-                <button onclick="window.location.href='./alertas'" class="btnPanico button"
-                    style="vertical-align:middle;">
-                    <span>VER ALERTAS REPORTADAS</span>
-                </button>
-            </div>
+      </div>
+      <div class="gAcceso">
+        <div class="grow">
+          <button
+            onclick="window.location.href='./alertas'"
+            class="btnPanico button"
+            style="vertical-align: middle"
+          >
+            <span>VER ALERTAS REPORTADAS</span>
+          </button>
         </div>
+      </div>
     </div>
     <div id="footer" class="grow">
-        <div class="footerC">
-            Thor Team | <a href="http://bictia.com/">BICTIA 2019</a>
-        </div>
+      <div class="footerC">
+        Thor Team | <a href="http://bictia.com/">BICTIA 2019</a>
+      </div>
     </div>
     <script src="js/progressbar.js"></script>
     <script src="js/barras.js"></script>
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
     <script>
-        var map = L.map('mapa');
-        map.locate({ enableHighAccuracy: true });
-        map.on('locationfound', e => {
-            map.setView([e.latlng.lat, e.latlng.lng], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
-                .bindPopup('Usted esta aquí. Lo estamos observando.')
-                .openPopup();
+      var map = L.map('mapa')
+      map.locate({ enableHighAccuracy: true })
+      map.on('locationfound', (e) => {
+        map.setView([e.latlng.lat, e.latlng.lng], 13)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map)
+        L.marker([e.latlng.lat, e.latlng.lng])
+          .addTo(map)
+          .bindPopup('Usted esta aquí. Lo estamos observando.')
+          .openPopup()
 
+        const Http = new XMLHttpRequest()
+        // const url='https://www.geoplugin.net/extras/location.gp?lat='+e.latlng.lat+'&long='+e.latlng.lng+'&format=json';
+        // const url='/geo/'+e.latlng.lat+'/'+e.latlng.lng;
+        const url = `https://dev.virtualearth.net/REST/v1/Locations/${e.latlng.lat},${e.latlng.lng}?key=AqRkfllJ3jqQ4OfO3e_fKzDh0MR8fxZ5vtwPvAAicEf99uctIqFdJIHk74BcgtJo`
+        Http.open('GET', url)
+        Http.send()
 
-            const Http = new XMLHttpRequest();
-            // const url='https://www.geoplugin.net/extras/location.gp?lat='+e.latlng.lat+'&long='+e.latlng.lng+'&format=json';
-            // const url='/geo/'+e.latlng.lat+'/'+e.latlng.lng;
-            const url = `https://dev.virtualearth.net/REST/v1/Locations/${e.latlng.lat},${e.latlng.lng}?key=AqRkfllJ3jqQ4OfO3e_fKzDh0MR8fxZ5vtwPvAAicEf99uctIqFdJIHk74BcgtJo`;
-            Http.open("GET", url);
-            Http.send();
-
-            Http.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    geojson = JSON.parse(Http.responseText);
-                    // console.log(geojson);
-                    // if (geojson[0][0].admin2Code==null){
-                    //     admin2CodeName="";
-                    // }
-                    // else{
-                    //     admin2CodeName=geojson[0][0].admin2Code.name+",";
-                    // }
-                    // console.log(geojson);
-                    // console.log(geojson.geoplugin_region+' ('+geojson.geoplugin_countryCode+')')
-                    // $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: '+admin2CodeName+' '+geojson[0][0].admin1Code.name+' ('+geojson[0][0].countryCode+')'+'</p><p style="text-align: left; margin: 5px;">Latitud: '+e.latlng.lat.toFixed(6)+'</p><p style="text-align: left; margin: 5px;">Longitud:'+ e.latlng.lng.toFixed(6))+'</p>';
-                    localidad = geojson.resourceSets[0].resources[0].address.locality;
-                    regionAdmin = geojson.resourceSets[0].resources[0].address.adminDistrict;
-                    pais = geojson.resourceSets[0].resources[0].address.countryRegion;
-                    $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: ' + localidad + ', ' + regionAdmin + ' (' + pais + ')' + '</p><p style="text-align: left; margin: 5px;">Latitud: ' + e.latlng.lat.toFixed(6) + '</p><p style="text-align: left; margin: 5px;">Longitud:' + e.latlng.lng.toFixed(6)) + '</p>';
-                }
-            }
-        });
+        Http.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            geojson = JSON.parse(Http.responseText)
+            // if (geojson[0][0].admin2Code==null){
+            //     admin2CodeName="";
+            // }
+            // else{
+            //     admin2CodeName=geojson[0][0].admin2Code.name+",";
+            // }
+            // $("#result").html('<p style="text-align: left; margin: 5px;">Su ubicación actual es: '+admin2CodeName+' '+geojson[0][0].admin1Code.name+' ('+geojson[0][0].countryCode+')'+'</p><p style="text-align: left; margin: 5px;">Latitud: '+e.latlng.lat.toFixed(6)+'</p><p style="text-align: left; margin: 5px;">Longitud:'+ e.latlng.lng.toFixed(6))+'</p>';
+            localidad = geojson.resourceSets[0].resources[0].address.locality
+            regionAdmin =
+              geojson.resourceSets[0].resources[0].address.adminDistrict
+            pais = geojson.resourceSets[0].resources[0].address.countryRegion
+            $('#result').html(
+              '<p style="text-align: left; margin: 5px;">Su ubicación actual es: ' +
+                localidad +
+                ', ' +
+                regionAdmin +
+                ' (' +
+                pais +
+                ')' +
+                '</p><p style="text-align: left; margin: 5px;">Latitud: ' +
+                e.latlng.lat.toFixed(6) +
+                '</p><p style="text-align: left; margin: 5px;">Longitud:' +
+                e.latlng.lng.toFixed(6)
+            ) + '</p>'
+          }
+        }
+      })
     </script>
-</body>
-
+  </body>
 </html>

@@ -1,0 +1,25 @@
+{
+    "extends": [
+        "airbnb",
+        "prettier",
+        "plugin:node/recommended"
+    ],
+    "plugins": ["prettier"],
+    "rules": {
+        "prettier/prettier": "error",
+        "no-unused-vars": "warn",
+        "func-names": "off",
+        "node/no-unsupported-features/es-syntax": [
+            "error",
+            { "ignores": ["modules"] }
+        ],
+        "no-underscore-dangle": "off",
+        "no-alert": "off",
+        "react/jsx-filename-extension": "off"
+    },
+    "parserOptions": {"sourceType": "module"},
+    "env": {
+        "browser": true,
+        "node": true
+    }
+}

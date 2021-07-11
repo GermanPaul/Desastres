@@ -1,2 +1,3 @@
 node_modules/
 src/public/js/*bundle.js
+src/public/js/*LICENSE.txt
