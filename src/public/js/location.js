@@ -1,8 +1,5 @@
 $('#find_btn').click(function () {
-  //user clicks button
   if ('geolocation' in navigator) {
-    //check geolocation available
-    //try to get user current location using getCurrentPosition() method
     navigator.geolocation.getCurrentPosition(function (position) {
       console.log(position.coords.latitude)
       $('#result').html(
@@ -17,27 +14,17 @@ $('#find_btn').click(function () {
   }
 })
 
-// var map;
-// function initMap() {
-//     map = new google.maps.Map($("#map")[0], {
-//         center: {lat: -34.397, lng: 150.644},
-//         zoom: 8
-//       });
-// }
-
 $('#my_location').click(function () {
-  //user click on button
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(show_location, show_error, {
       timeout: 1000,
       enableHighAccuracy: true,
-    }) //position request
+    })
   } else {
     console.log("Browser doesn't support geolocation!")
   }
 })
 
-//Success Callback
 function show_location(position) {
   infoWindow = new google.maps.InfoWindow({ map: map })
   var pos = { lat: position.coords.latitude, lng: position.coords.longitude }
@@ -46,7 +33,6 @@ function show_location(position) {
   map.setCenter(pos)
 }
 
-//Error Callback
 function show_error(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
